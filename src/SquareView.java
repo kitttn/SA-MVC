@@ -20,6 +20,14 @@ public class SquareView extends JFrame {
 		//
 		this.setContentPane(content);
 		this.pack();
+
+		sqrBtn.addActionListener(t -> squareListener());
+		input.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clearListener();
+			}
+		});
 		//
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
@@ -32,11 +40,13 @@ public class SquareView extends JFrame {
 		output.setText(v);
 	}
 
-	public void addSquareListener(ActionListener a) {
-		sqrBtn.addActionListener(a);
+	public void squareListener() {
+		String userinput = getNumber();
+		M.setValue(Integer.parseInt(userinput));
+		setNumber(Integer.toString(M.square()));
 	}
 
-	public void addClearListener(MouseListener action) {
-		input.addMouseListener(action);
+	public void clearListener() {
+		setNumber("");
 	}
 }
